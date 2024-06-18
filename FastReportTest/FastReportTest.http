@@ -1,0 +1,6 @@
+@FastReportTest_HostAddress = http://localhost:5037
+
+GET {{FastReportTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
