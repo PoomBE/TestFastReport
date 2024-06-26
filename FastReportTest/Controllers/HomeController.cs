@@ -1,7 +1,8 @@
 ﻿using FastReport;
 using Microsoft.AspNetCore.Mvc;
 using Testing.Models;
-
+using FastReport.Web;
+using FastReport.Export.PdfSimple;
 namespace FastReportTest.Controllers
 {
     [ApiController]
@@ -35,8 +36,9 @@ namespace FastReportTest.Controllers
                 webReport.Report.RegisterData(sales, "EmployeeRef");
                 if (webReport.Report.Prepare())
                 {
+                    var pdfExport = new PDFSimpleExport();
                     System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                    webReport.Report.Export(new PDFExport(), ms);
+                    webReport.Report.Export(pdfExport, ms);
                     ms.Position = 0;
                     if (ms.Length == 0)
                     {
